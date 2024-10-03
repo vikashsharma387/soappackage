@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="getData" targetNamespace="https://wmintanywhere.int-aw-au.webmethods.io/integration/wsd/getData" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://wmintanywhere.int-aw-au.webmethods.io/integration/wsd/getData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://wmintanywhere.int-aw-au.webmethods.io/integration/wsd/getData" xmlns:tns="https://wmintanywhere.int-aw-au.webmethods.io/integration/wsd/getData" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <xsd:element name="getData" type="tns:getData"/>
+          <xsd:element name="getDataResponse" type="tns:getDataResponse"/>
+          <xsd:complexType name="getData">
+            <xsd:sequence>
+              <xsd:element name="input" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="getDataResponse">
+            <xsd:sequence>
+              <xsd:element name="output" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getData_PortType_getDataResponse">
+    <wsdl:part name="parameters" element="tns:getDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getData_PortType_getData">
+    <wsdl:part name="parameters" element="tns:getData">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="getData_PortType">
+    <wsdl:operation name="getData">
+      <wsdl:input message="tns:getData_PortType_getData">
+    </wsdl:input>
+      <wsdl:output message="tns:getData_PortType_getDataResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="getData_Binder" type="tns:getData_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getData">
+      <soap:operation soapAction="getData_Binder_getData" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="getData">
+    <wsdl:port name="getData_Port" binding="tns:getData_Binder">
+      <soap:address location="https://wmintanywhere.int-aw-au.webmethods.io/integration/ws/development/fl512ed82ebb44e140d25b85/getData/getData_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
